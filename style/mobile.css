@@ -1,0 +1,132 @@
+/* Mobile First Styles */
+
+@media (max-width: 767px) {
+    body {
+        overflow-x: hidden;
+        touch-action: pan-y;
+    }
+
+    .header .title {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .character {
+        transform: scale(0.6);
+        transform-origin: bottom center;
+    }
+
+    #btn, #audio {
+        width: 80px;
+        height: 45px;
+        font-size: 12px;
+        top: 15px;
+        border-radius: 20px;
+    }
+
+    #btn {
+        left: 10px;
+    }
+
+    #audio {
+        left: 95px;
+    }
+
+    .scene {
+        background-size: cover !important;
+    }
+
+    .birdFly {
+        animation-duration: 8s !important;
+    }
+
+    .water_1, .water_2, .water_3, .water_4 {
+        animation-duration: 20s !important;
+    }
+
+    .snowbox {
+        width: 25px !important;
+        height: 25px !important;
+    }
+
+    .stars > li {
+        animation-duration: 6s !important;
+    }
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .character {
+        transform: scale(0.8);
+    }
+
+    #btn, #audio {
+        width: 100px;
+        height: 55px;
+        font-size: 14px;
+    }
+}
+
+/* Touch Feedback */
+.control-btn:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+}
+
+/* Mobile Overlay */
+.mobile-overlay {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    z-index: 10000;
+    pointer-events: none;
+    display: none;
+}
+
+.mobile .mobile-overlay {
+    display: block;
+}
+
+.swipe-indicator {
+    display: inline-block;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 0.5; transform: scale(0.95); }
+}
+
+/* Landscape Warning */
+.landscape-warning {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    color: white;
+    z-index: 10001;
+    text-align: center;
+    padding-top: 30vh;
+    font-size: 18px;
+}
+
+body.landscape .landscape-warning {
+    display: block;
+}
+
+/* Performance Optimizations */
+.low-end .stars,
+.low-end .snowflakes,
+.low-end .water {
+    display: none;
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BhumikaforU</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style/reset.css">
+	<link rel="stylesheet" type="text/css" href="style/index.css">
+	<link rel="stylesheet" type="text/css" href="style/pageA.css">
+	<link rel="stylesheet" type="text/css" href="style/pageB.css">
+	<link rel="stylesheet" type="text/css" href="style/pageC.css">
+	<script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
+</head>
+<body>
+<center>	<H1>|| Every Time Busy Girl || I Miss You ||</H1>
+</center>
+	<div id="content">
+		<ul class="content-wrap">
+			<li>
+				<div class="a_background">
+                    <div class="a_background_top"></div>
+                    <div class="a_background_middle"></div>
+                    <div class="a_background_bottom"></div>
+                </div>
+				<div id="sun"></div>
+				<div class="cloudArea">
+                    <div class="cloud cloud1"></div>
+                    <div class="cloud cloud2"></div>
+                </div>
+			</li>
+			<li>
+
+				<div class="b_background"></div>
+                <div class="b_background_preload"></div>
+
+				<div class="shop">
+                    <div class="door">
+                        <div class="door-left"></div>
+                        <div class="door-right"></div>
+                    </div>
+                    <!-- <button id="open">open</button>
+                    <button id="close">close</button> -->
+
+					<div class="lamp"></div>
+                </div> 
+                <div class="bird">
+                	
+                </div>
+			</li>
+
+			<li>
+
+				<div class="c_background">
+                    <div class="c_background_top"></div>
+                    <div class="c_background_middle"></div>
+                    <div class="c_background_botton"></div>
+                </div>
+
+				<div class="girl"></div>
+
+				<div class="bridge-bottom">
+                    <div class="water">
+                        <div id="water1" class="water_1"></div>
+                        <div id="water2" class="water_2"></div>
+                        <div id="water3" class="water_3"></div>
+                        <div id="water4" class="water_4"></div>
+                    </div>
+                </div>
+
+				<ul class="stars">
+                    <li class="stars1"></li>
+                    <li class="stars2"></li>
+                    <li class="stars3"></li>
+                    <li class="stars4"></li>
+                    <li class="stars5"></li>
+                    <li class="stars6"></li>
+                </ul>
+                <div class="logo">
+                	
+                </div>
+            </li>
+		</ul>
+		<div id="snowflake">
+		</div>
+	</div>
+	<div id="boy" class="character">
+		
+	</div>
+	<button id="btn">
+		Click
+	</button>
+	<button id="audio">
+		music
+	</button>
+
+	<script type="text/javascript" src="js/swipe.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/boyWalk.js"></script>
+	<script type="text/javascript" src="js/jqueryTransit.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var container = $('#content');
+			var swipe = Swipe(container);
+			function scrollTo(time,proportionX){
+				var distX = container.width() * proportionX;
+            	swipe.scrollTo(distX, time);
+			}
+
+		////////////////////////////////////////////////////////
+        //=================== Bhumika ====================== //
+        ////////////////////////////////////////////////////////
+    
+    
+        var boy = BoyWalk();
+		var music = audio('./music/1.mp3',1);
+		var musicBtn = $('#audio');
+		onOff=true;
+		musicBtn.on('click',function(){
+			onOff ? music.pause() : music.play();
+			onOff = !onOff;
+		});
+
+        function startWalk(){
+        	$('#sun').addClass('rotation');
+        	$('.cloud:first').addClass('cloud1Anim');
+        	$('.cloud:last').addClass('cloud2Anim');
+
+        	boy.walkTo(2000,0.2)
+        	.then(function(){
+        		scrollTo(10000,1);	
+        	}).then(function(){
+        		return boy.walkTo(10000,0.5);
+        	})
+        	.then(function(){
+        		boy.stopWalk();
+        	}).then(function(){
+        		return openDoor();
+        	}).then(function(){
+        		lamp.bright();
+        	}).then(function(){
+        		return boy.toShop(2000);
+        	}).then(function(){
+        		bird.fly();
+        	}).then(function(){
+        		return boy.takeFlower();
+        	}).then(function(){
+        		return boy.outShop(2000);
+        	}).then(function(){
+        		return closeDoor();
+        	}).then(function(){
+        		lamp.dark();
+        	}).then(function(){
+        		scrollTo(6000,2.02);
+        	}).then(function(){
+        		return boy.walkTo(6000,0.15);
+        	}).then(function(){
+        		return boy.walkTo(1500,0.25,0.375);
+        	}).then(function(){
+        		return boy.walkTo(1500, 0.4);
+        	}).then(function(){
+        		boy.resetOriginal();
+        	}).then(function(){
+        		setTimeout(function(){
+        			girl.rotate();
+        			boy.rotate(function(){
+        				logo.run();
+        			});
+        		},1000);
+        	}).then(function(){
+        		snowflake();
+        	});
+        }
+        $("#btn").click(startWalk);
+    });
+	</script>
+	<link rel="stylesheet" href="style/mobile.css">
+	<script src="js/swipe.js"></script>
+<script src="js/boyWalk.js"></script>
+<script src="js/main.js"></script> <!-- Add this line -->
+</body>
+</html>
